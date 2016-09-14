@@ -443,6 +443,9 @@ response.message = User.createUser(user)
 </tr>
 </tbody>
 </table>
+<h5 id="example">Example</h5>
+<pre><code class="lang-lua">response.message = User.socialList()
+</code></pre>
 <hr>
 <h4 id="createsocial">createSocial</h4>
 <blockquote>
@@ -546,6 +549,16 @@ response.message = User.createUser(user)
 </tr>
 </tbody>
 </table>
+<h5 id="example">Example</h5>
+<pre><code class="lang-lua">local new_social = {
+  [&quot;consumer&quot;] = &quot;Google&quot;,
+  [&quot;client_id&quot;] = &quot;173032451965-6aritviopipcqec0j4cq5sxc1519m025.apps.googleusercontent.com&quot;,
+  [&quot;client_secret&quot;] = &quot;sNa2saB31xQnQ09sUc2OOywF&quot;,
+  [&quot;scope&quot;] = {&quot;profile&quot;,&quot;email&quot;},
+  [&quot;redirect&quot;] = &quot;https://demo.apps.exosite-dev.io/social/handle/Google&quot;
+}
+response.message = User.createSocial(new_social)
+</code></pre>
 <hr>
 <h4 id="getcurrentuser">getCurrentUser</h4>
 <blockquote>
@@ -1473,6 +1486,12 @@ response.message = User.assignUser(parameters)
 </tr>
 </tbody>
 </table>
+<h5 id="example">Example</h5>
+<pre><code class="lang-lua">local parameters = {
+  [&quot;consumer&quot;] = &quot;Google&quot;
+}
+response.message = User.getSocial(parameters)
+</code></pre>
 <hr>
 <h4 id="updatesocial">updateSocial</h4>
 <blockquote>
@@ -1540,6 +1559,13 @@ response.message = User.assignUser(parameters)
 </tr>
 </tbody>
 </table>
+<h5 id="example">Example</h5>
+<pre><code class="lang-lua">local parameters = {
+  [&quot;consumer&quot;] = &quot;Google&quot;,
+  [&quot;scope&quot;] = {&quot;email&quot;}
+}
+response.message = User.updateSocial(parameters)
+</code></pre>
 <hr>
 <h4 id="deletesocial">deleteSocial</h4>
 <blockquote>
@@ -1587,6 +1613,12 @@ response.message = User.assignUser(parameters)
 </tr>
 </tbody>
 </table>
+<h5 id="example">Example</h5>
+<pre><code class="lang-lua">local parameters = {
+  [&quot;consumer&quot;] = &quot;Google&quot;
+}
+response.message = User.deleteSocial(parameters)
+</code></pre>
 <hr>
 <h4 id="listuserdata">listUserData</h4>
 <blockquote>
@@ -2015,6 +2047,12 @@ response.message = User.deletePerm(parameters)
 </tr>
 </tbody>
 </table>
+<h5 id="example">Example</h5>
+<pre><code class="lang-lua">local parameters = {
+  [&quot;consumer&quot;] = &quot;Google&quot;
+}
+response.headers[&quot;location&quot;] = User.getSocialLoginUrl(parameters) -- redierct to social login url response.code = 303
+</code></pre>
 <hr>
 <h4 id="getsocialtoken">getSocialToken</h4>
 <blockquote>
@@ -2087,6 +2125,14 @@ response.message = User.deletePerm(parameters)
 </tr>
 </tbody>
 </table>
+<h5 id="example">Example</h5>
+<pre><code class="lang-lua">local parameters = {
+  [&quot;consumer&quot;] = &quot;Google&quot;,
+  [&quot;code&quot;] = &quot;7/Diur60jCjzCm14ukTdFgxow17OWxzDdj4rA6YQV1Sid&quot;,
+  [&quot;state&quot;] = &quot;56k120223c83a23b49a136725e63c717&quot;
+} -- info from Google servers for exchanging token
+response.message = User.getSocialToken(parameters)
+</code></pre>
 <hr>
 <h4 id="getuserdata">getUserData</h4>
 <blockquote>
@@ -2485,6 +2531,13 @@ response.message = User.addRolePerm(parameters)
 </tr>
 </tbody>
 </table>
+<h5 id="example">Example</h5>
+<pre><code class="lang-lua">local parameters = {
+  [&quot;consumer&quot;] = &quot;Google&quot;,
+  [&quot;token&quot;] = &quot;ZzozMzoiT0F1dGhcT0F1dGgyXFRva2VuXKN0ZE9BdXRoMlRva2VuIjo0OntzOjQ0OiIAKgBhY2Nlc3NUc2tlbiI7czo19ToieWEyOS5DaTlXQTZ1UUFCc3RYSnpmZGhDRjkyZnhaYXRvOURVMEdmTjgwTVRZSTJCbkI1MVptN1pZSjZVbm9vOXEtMktvZVEiO3M6MTU6IgCqAHJlZnJlc2hUb2tlbiI7TjtzOjEyOiIAKgBlbmRPZkxpZmUiO2k6MTQ3MzE1NDYyNztzOjE0OiIAKgBleHRyYVBhcmFtcyI7YToyOntzOjEwOiJ0b2tlbl90eXBlIjtzOjY6IkJTndILU03N2ZacVVVMTZxQlhjSGxILVI2NEVZOG9kVkNnYWM1UkdOVlI5eTA2LUNyeDdPcjlXcm10VmsyYVhMYXFkU3J5c0pqUFREWU5iX2NxM1RrTTFySThnQ1NJT3JhZmE5WHVhaXNtSHhTREtiQmN1bE41YXhCVnF0bFpKWUpUR3BLQmlaeGNGLVREQ1ZZQU5ZaVF4a0lzTjFoVHdlNF9ESzVGNWVaalozdFNzUHR6eGtvZkJBd3U0LWRLeGRWbkM3S25IdGhKLWI1ZVpMenU2aUFIdWRFdEFRckU0WGl6bTM4YkJaRkdRaGFDUVB5R3RXMlRHSTJ2UV9rZkZGbXBiMGFOUUJHTVhLdvkzcFZyR3BvYWpxZFlfZTRfdi13NUxiYXc1RVRuRWdkbmNqNUEi2391&quot;
+}
+response.message = User.socialRequest(parameters)
+</code></pre>
 <hr>
 <h4 id="hasuserperm">hasUserPerm</h4>
 <blockquote>
